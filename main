@@ -4,7 +4,7 @@ public class U5E8 {
     public static void main(String[] args) {
        Scanner sn=new Scanner(System.in);
        U5E8 obj=new U5E8();
-       int matriz[][]=new int[3][2];
+       int matriz[][]=new int[3][3];
        
         System.out.println("Dame los elemenos de la matriz:");
         for (int i = 0; i < matriz.length; i++) {
@@ -15,11 +15,11 @@ public class U5E8 {
         System.out.println("matriz original:");
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
-                System.out.println(" "+matriz[i][j]);
+                System.out.print(" "+matriz[i][j]);
             }
             System.out.println("");
         }
-        System.out.println("matriz ordenada:");
+        //System.out.println("matriz ordenada:");
         obj.radix(matriz);
     }//main
     public void radix(int matriz[][]){
