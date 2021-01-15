@@ -1,0 +1,57 @@
+import java.util.Scanner;
+public class U5E8 {
+
+    public static void main(String[] args) {
+       Scanner sn=new Scanner(System.in);
+       U5E8 obj=new U5E8();
+       int matriz[][]=new int[3][2];
+       
+        System.out.println("Dame los elemenos de la matriz:");
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                matriz[i][j]=sn.nextInt();
+            }
+        }
+        System.out.println("matriz original:");
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                System.out.println(" "+matriz[i][j]);
+            }
+            System.out.println("");
+        }
+        System.out.println("matriz ordenada:");
+        obj.radix(matriz);
+    }//main
+    public void radix(int matriz[][]){
+        if(matriz.length == 0)
+      return;
+      int[][] np = new int[matriz.length][matriz.length];
+      int[] q = new int[0x100];
+      int i,j,k,l,f = 0;
+      for(k=0;k<4;k++) {
+         for(i=0;i<(np.length-1);i++)
+         np[i][1] = i+1;
+         np[i][1] = -1;
+         for(i=0;i<q.length;i++)
+         q[i] = -1;
+         for(f=i=0;i<matriz.length;i++) {
+            j = ((0xFF<<(k<<3))&matriz[i][k])>>(k<<3);
+            if(q[j] == -1)
+            l = q[j] = f;
+         else {
+            l = q[j];
+            while(np[l][1] != -1)
+            l = np[l][1];
+            np[l][1] = f;
+            l = np[l][1];
+         }
+         f = np[f][1];
+         np[l][0] = matriz[i][j];
+         np[l][1] = -1;
+      }
+      for(l=q[i=j=0];i<0x100;i++)
+      for(l=q[i];l!=-1;l=np[l][1])
+      matriz[i++][j++] = np[l][0];
+   }
+    }
+}//class
